@@ -1,0 +1,20 @@
+{
+  "name": "blast-rage-online",
+  "version": "1.0.0",
+  "description": "A server emulator for the MMO game Blast Rage Online.",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {},
+  "engines": {
+    "node": "^24"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "homepage": "https://github.com/seirdotexe/Blast-Rage-Online",
+  "repository": "github:seirdotexe/Blast-Rage-Online",
+  "bugs": {
+    "url": "https://github.com/seirdotexe/Blast-Rage-Online/issues"
+  },
+  "author": "seirdotexe",
+  "license": "BSD-3-Clause"
+}
