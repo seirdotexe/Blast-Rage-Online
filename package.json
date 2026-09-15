@@ -8,8 +8,12 @@
   "engines": {
     "node": "^24"
   },
-  "dependencies": {},
-  "devDependencies": {},
+  "dependencies": {
+    "@fastify/static": "10.1.3",
+    "fastify": "5.12.3",
+    "winston": "^3.19.0",
+    "winston-daily-rotate-file": "^5.0.0"
+  },
   "homepage": "https://github.com/seirdotexe/Blast-Rage-Online",
   "repository": "github:seirdotexe/Blast-Rage-Online",
   "bugs": {
