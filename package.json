@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "A server emulator for the MMO game Blast Rage Online.",
   "type": "module",
-  "main": "src/server.js",
-  "scripts": {},
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node --env-file=config/game.env src/index.js"
+  },
   "engines": {
     "node": "^24"
   },
