@@ -2,19 +2,42 @@
 
 A server emulator for the MMO game Blast Rage Online.
 
-🎯 The goal of this project is to preserve the MMO game Blast Rage Online from XGen Studios.
+🎯 The goal of this project is to preserve the MMO game Blast Rage Online (public6b) from XGen Studios.
 
 # Requirements and installation
 
-Requires Node V24 and up and PostgreSQL.
+📝 Requires Node V24 and up and PostgreSQL.
 
 1. Download the repo and unzip it
 2. Open terminal, cd to the unzipped directory, and install all modules using `npm i`
 3. In the same terminal, run the command `npm run start`
 
+# Required P-code changes to the SWF
+
+📝 Requires JPEXS V26.3.0 and up.
+
+The game is domain locked, a classic "DRM" in Flash games. In the main class of the game, it'll check the domain.
+> if(_SafeCls_10._SafeStr_968("xgenstudios.com",this) || _SafeCls_10._SafeStr_968("blastrage.com",this))
+
+![alt text](screenshots/drm1.png)
+
+You can easily patch out this check by always returning true in the function `public static function _SafeStr_968(param1:String, param2:MovieClip) : Boolean`.
+
+![alt text](screenshots/drm2.png)
+
+Select the function name, click the button to edit the P-code and modify the **code** block to only this:
+
+```
+code
+   pushtrue
+   returnvalue
+```
+
+![alt text](screenshots/drm3.png)
+
 # Playing the game
 
-Because Adobe Flash support has ceased to be supported, your only option is to create an Electron client, or use Pale Moon. The latter is the easiest.
+Because Adobe Flash support has ceased, your only option is to create an Electron client, or use Pale Moon. The latter is the easiest.
 
 1. Download Pale Moon [here](https://www.palemoon.org/download.php?mirror=eu&bits=64&type=7z)
 2. Extract it and create a new directory inside `palemoon-34.3.2.win64\palemoon` called **plugins**

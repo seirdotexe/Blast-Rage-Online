@@ -2,3 +2,5 @@ node_modules
 package-lock.json
 playground.js
 src/public/blast-rage-online
+src/public/data/
+src/public/*.swf
