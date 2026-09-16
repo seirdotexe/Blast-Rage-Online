@@ -12,7 +12,7 @@
  * @property {string} PROCESS_TITLE
  * @property {string} VERSION
  * --- General purpose
- * @typedef {Object} ILogger
+ * @typedef {object} ILogger
  * @property {(msg:string)=>void} error
  * @property {(msg:string)=>void} warn
  * @property {(msg:string)=>void} info

@@ -1,8 +1,8 @@
 export default class Client {
   /**
    * Creates a new client containing all player logic
-   * @param {Socket} socket
-   * @param {GameServer} server
+   * @param {Socket} socket - The TCP socket
+   * @param {GameServer} server - The game server instance
    */
   constructor(socket, server) {
     /**
