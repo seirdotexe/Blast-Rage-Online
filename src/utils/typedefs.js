@@ -17,4 +17,9 @@
  * @property {(msg:string)=>void} warn
  * @property {(msg:string)=>void} info
  * @property {(msg:string)=>void} verbose
+ * --- Types / Internal
+ * @typedef {import('../client.js').default} Client
+ * @typedef {import('../game.js').default} GameServer
+ * --- Types / Node
+ * @typedef {import('node:net').Socket} Socket
  */

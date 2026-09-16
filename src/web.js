@@ -2,7 +2,6 @@ import fastifyStatic from '@fastify/static';
 import Fastify from 'fastify';
 import logger from './utils/logger.js';
 
-/** @module blast-rage-online/WebServer */
 export default class WebServer {
   /**
    * The Fastify instance
