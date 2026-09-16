@@ -30,6 +30,8 @@ export default class GameServer {
    * Starts the game server
    */
   async start() {
+    await this.networkManager.loadHandlers();
+
     createServer((socket) => {
       socket.setEncoding('utf8');
       socket.setTimeout(10000);

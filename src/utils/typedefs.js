@@ -17,6 +17,10 @@
  * @property {(msg:string)=>void} warn
  * @property {(msg:string)=>void} info
  * @property {(msg:string)=>void} verbose
+ *
+ * @typedef {object} IHandler
+ * @property {number} opcode
+ * @property {Function} callback
  * --- Types / Internal
  * @typedef {import('../client.js').default} Client
  * @typedef {import('../game.js').default} GameServer
