@@ -4,9 +4,11 @@ A server emulator for the MMO game Blast Rage Online.
 
 🎯 The goal of this project is to preserve the MMO game Blast Rage Online (public6b) from XGen Studios.
 
+![alt text](screenshots/game.png)
+
 # Requirements and installation
 
-📝 Requires Node V24 and up and PostgreSQL.
+📝 Requires Node ^24 and PostgreSQL ^18.
 
 1. Download the repo and unzip it
 2. Open terminal, cd to the unzipped directory, and install all modules using `npm i`
@@ -14,7 +16,7 @@ A server emulator for the MMO game Blast Rage Online.
 
 # Required P-code changes to the SWF
 
-📝 Requires JPEXS V26.3.0 and up.
+📝 Requires JPEXS ^26.
 
 The game is domain locked, a classic "DRM" in Flash games. In the main class of the game, it'll check the domain.
 > if(_SafeCls_10._SafeStr_968("xgenstudios.com",this) || _SafeCls_10._SafeStr_968("blastrage.com",this))
