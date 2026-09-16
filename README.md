@@ -80,6 +80,7 @@ Replace it with `pop` and add another entry `pop`.
 ![Showcase DRM Packet 4](media/drm/packet4.png)
 
 This results in the call being disabled.
+
 ![Showcase DRM Packet 5](media/drm/packet5.png)
 
 You'll have to do that for both of the functions.
