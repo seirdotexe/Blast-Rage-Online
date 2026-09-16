@@ -29,7 +29,7 @@ export default class GameServer {
   /**
    * Starts the game server
    */
-  start() {
+  async start() {
     createServer((socket) => {
       socket.setEncoding('utf8');
       socket.setTimeout(10000);

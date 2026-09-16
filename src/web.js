@@ -24,16 +24,14 @@ export default class WebServer {
   /**
    * Starts the web server
    */
-  start() {
+  async start() {
     this.#app = Fastify();
 
     this.#app.setNotFoundHandler((_, res) => res.code(404).type('text/html').send('Not Found'));
-    this.#app.register(fastifyStatic, {
-      root: `${import.meta.dirname}\\public`,
-      prefix: '/'
-    });
+    this.#app.register(fastifyStatic, { root: `${import.meta.dirname}\\public`, prefix: '/' });
 
-    this.#app.listen({ host: process.env.WEB_HOST, port: process.env.WEB_PORT }, () => this.logger.info(`Web server listening on ${process.env.WEB_HOST}:${process.env.WEB_PORT}.`));
+    await this.#app.listen({ host: process.env.WEB_HOST, port: process.env.WEB_PORT });
+    this.logger.info(`Web server listening on ${process.env.WEB_HOST}:${process.env.WEB_PORT}.`)
 
     process.on('SIGINT', async () => { await this.#app.close(); process.exit(); });
     process.on('SIGTERM', async () => { await this.#app.close(); process.exit(); })

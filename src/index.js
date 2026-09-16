@@ -6,5 +6,4 @@ process.title = `${process.pid}-${process.env.PROCESS_TITLE}`;
 const gameServer = new GameServer();
 const webServer = new WebServer();
 
-gameServer.start();
-webServer.start();
+await Promise.all([webServer.start(), gameServer.start()]);
