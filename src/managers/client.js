@@ -4,14 +4,12 @@ export default class ClientManager {
    * @private
    * @type {Map<number, Client>}
    */
-  #clients;
+  #clients = new Map();
 
   /**
    * Creates a new client manager instance to hold connected clients
    */
-  constructor() {
-    this.#clients = new Map();
-  }
+  constructor() { }
 
   /**
    * Returns the map holding all of the clients

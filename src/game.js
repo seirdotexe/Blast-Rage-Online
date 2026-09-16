@@ -39,27 +39,15 @@ export default class GameServer {
       this.logger.info(`Client ${client.id} has connected`);
 
       // Process incoming data from the client to the server
-      socket.on('data', (data) => {
-        this.networkManager.handleData(data.split('\0')[0], client);
-      });
+      socket.on('data', (data) => this.networkManager.handleData(data.split('\0')[0], client));
       // Client gracefully says it's done sending
-      socket.on('end', () => {
-        this.logger.info(`Client ${client.id} ended the connection`);
-      });
+      socket.on('end', () => this.logger.info(`Client ${client.id} ended the connection`));
       // Client fully closed the connection
-      socket.on('close', () => {
-        this.clientManager.remove(client);
-        this.logger.info(`Client ${client.id} disconnected`);
-      });
+      socket.on('close', () => this.clientManager.remove(client), this.logger.info(`Client ${client.id} disconnected`));
       // Process socket errors
-      socket.on('error', (err) => {
-        this.logger.error(`Client ${client.id} socket error: ${err.message}`);
-      });
+      socket.on('error', (err) => this.logger.error(`Client ${client.id} socket error: ${err.message}`));
       // Process client timeouts
-      socket.on('timeout', () => {
-        client.disconnect();
-        this.logger.info(`Client ${client.id} timed out`);
-      });
+      socket.on('timeout', () => client.disconnect(), this.logger.info(`Client ${client.id} timed out`));
     }).listen(process.env.GAME_PORT, process.env.GAME_HOST, () => this.logger.info(`Game server listening on ${process.env.GAME_HOST}:${process.env.GAME_PORT}.`));
   }
 }
