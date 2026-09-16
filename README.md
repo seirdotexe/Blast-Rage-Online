@@ -57,7 +57,7 @@ code
 
 ### Funky server settings
 
-There appears to be some sort of bug going on when it comes to having a predefined server by default. The game does retrieve all servers but just never sets them. Instead it'll use **dev.mmocha.com** which is already set on `_SafeStr_519`. I suppose you're better off changing this variable to your IP. I just ignored this and went over it quickly. There's also a secret event somewhere that you can trigger that'll change the port to 1139.
+There appears to be some sort of bug going on when it comes to having a predefined server by default. The game does retrieve all servers but just never sets them. Instead it'll use **dev.mmocha.com** which is already set on `_SafeStr_519`. I suppose you're better off changing this variable to your IP. I just ignored this and went over it quickly, I could be wrong. There's also a secret event when holding CTRL and clicking **Got a Gamepad? Get Joy2Key** that you can trigger that'll change the port to 1139.
 
 ### Sniffing packet
 
