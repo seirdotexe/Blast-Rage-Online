@@ -12,7 +12,9 @@ A server emulator for the MMO game Blast Rage Online.
 
 1. Download the repo and unzip it
 2. Open terminal, cd to the unzipped directory, and install all modules using `npm i`
-3. In the same terminal, run the command `npm run start`
+3. Gather the game files and drop them in **src/public**
+4. Edit the settings.ini servers array and point it towards your own server
+5. In the same terminal, run the command `npm run start`
 
 # Required P-code changes to the SWF
 

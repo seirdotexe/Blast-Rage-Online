@@ -44,9 +44,6 @@ export default class Client {
   disconnect() {
     if (this.socket.destroyed) return;
 
-    this.server.clientManager.remove(this);
-    this.socket.destroy();
-
-    this.server.logger.info(`Client ${this.id} has been disconnected`);
+    this.socket.end();
   }
 }

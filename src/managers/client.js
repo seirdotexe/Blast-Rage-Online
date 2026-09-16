@@ -7,7 +7,7 @@ export default class ClientManager {
   #clients;
 
   /**
-   * Creates a new client manager instance
+   * Creates a new client manager instance to hold connected clients
    */
   constructor() {
     this.#clients = new Map();
