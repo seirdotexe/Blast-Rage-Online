@@ -16,6 +16,12 @@ Requires Node V24 and up and PostgreSQL.
 
 Because Adobe Flash support has ceased to be supported, your only option is to create an Electron client, or use Pale Moon. The latter is the easiest.
 
+1. Download Pale Moon [here](https://www.palemoon.org/download.php?mirror=eu&bits=64&type=7z)
+2. Extract it and create a new directory inside `palemoon-34.3.2.win64\palemoon` called **plugins**
+3. Download `NPSWF64_32_0_0_371.dll` from [here](https://github.com/dreamcentury/webbrowser-flash) and place it in the plugins folder
+4. In Pale Moon, go to `about:config` and set `plugins.load_appdir_plugins` to **true**
+5. Flash should now be activated in `about:plugins`
+
 ⚠️ Due to copyright, I won't be able to include the game files.
 
 # License & Copyright
