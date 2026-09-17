@@ -30,9 +30,9 @@ Because support for Adobe Flash has ceased, your only options are to create an E
 
 ⚠️ Due to copyright, I won't be able to include the game files. They're easy to find on Archive.org.
 
-# Required P-code changes to the SWF
+# Reverse engineered caveats
 
-📝 Requires JPEXS ^26.
+📝 P-code changes requires JPEXS ^26.
 
 ### Remove domain lock
 
@@ -84,6 +84,10 @@ This results in the call being disabled.
 ![Showcase DRM Packet 5](media/drm/packet5.png)
 
 You'll have to do that for both of the functions.
+
+### Custom Caesar shift cipher
+
+The game uses a custom Caesar cipher to obfuscate packets that don't start with **0**. The cipher: `_SafePkg_41._SafeCls_40`. Handling data to send to server: `_SafePkg_8._SafeCls_71._SafeStr_154`.
 
 # License & Copyright
 

@@ -34,6 +34,9 @@ export default class Client {
    */
   send(data) {
     if (this.socket?.writable) {
+      // Todo - Encipher Caesar data when sending outgoing data
+      if (data[0] !== '0') { }
+
       this.socket.write(`${data}\0`);
     }
   }

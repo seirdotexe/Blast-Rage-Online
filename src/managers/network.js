@@ -38,6 +38,9 @@ export default class NetworkManager {
         return client.send(`<cross-domain-policy><allow-access-from domain='*' to-ports='*' /></cross-domain-policy>`);
       }
 
+      // Todo - Decipher Caesar data when handling incoming data
+      if (data[0] !== '0') { }
+
       const opcode = data.slice(0, 2);
       const params = data.slice(2);
       const callback = this.#handlers.get(opcode);
