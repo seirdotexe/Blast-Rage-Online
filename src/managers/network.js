@@ -1,4 +1,5 @@
 import { readdir } from 'node:fs/promises';
+import Caesar from '../utils/caesar.js';
 
 export default class NetworkManager {
   /**
@@ -38,11 +39,12 @@ export default class NetworkManager {
         return client.send(`<cross-domain-policy><allow-access-from domain='*' to-ports='*' /></cross-domain-policy>`);
       }
 
-      // Todo - Decipher Caesar data when handling incoming data
-      if (data[0] !== '0') { }
+      const packet = Caesar.decodePacket(data);
+      const isUnobfuscated = (packet[0] === '0');
 
-      const opcode = data.slice(0, 2);
-      const params = data.slice(2);
+      // Obfuscated packets uses only the first character for their opcode, whereas unobfuscated ones always begin with 0 and then their identifiable opcode
+      const opcode = isUnobfuscated ? packet.slice(0, 2) : packet[0];
+      const params = isUnobfuscated ? packet.slice(2) : packet.slice(1);
       const callback = this.#handlers.get(opcode);
 
       if (!callback) {

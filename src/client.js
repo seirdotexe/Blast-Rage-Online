@@ -1,3 +1,5 @@
+import Caesar from './utils/caesar.js';
+
 export default class Client {
   /**
    * Creates a new client containing all player logic
@@ -34,10 +36,7 @@ export default class Client {
    */
   send(data) {
     if (this.socket?.writable) {
-      // Todo - Encipher Caesar data when sending outgoing data
-      if (data[0] !== '0') { }
-
-      this.socket.write(`${data}\0`);
+      this.socket.write(`${Caesar.encodePacket(data)}\0`);
     }
   }
 
