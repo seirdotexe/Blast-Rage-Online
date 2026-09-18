@@ -18,7 +18,7 @@ export default class Caesar {
    * @returns {string} The encoded packet
    */
   static encodePacket(packet) {
-    if (packet[0] === '0') return packet;
+    if (packet[0] === '0' || packet[0] === '<') return packet;
 
     let shiftAmount = Math.floor(Math.random() * 60);
 
@@ -28,7 +28,7 @@ export default class Caesar {
     }
 
     // First character = encoded shift amount, the remaining characters = shifted packet
-    return (encodeInteger(shiftAmount, 1) + shiftCharacters(packet, shiftAmount));
+    return (this.encodeInteger(shiftAmount, 1) + this.shiftCharacters(packet, shiftAmount));
   }
 
   /**
