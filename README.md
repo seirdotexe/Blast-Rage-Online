@@ -4,6 +4,8 @@ A server emulator for the MMO game Blast Rage Online.
 
 🎯 The goal of this project is to preserve the MMO game Blast Rage Online (version public6b) from XGen Studios.
 
+⚠️ Currently not yet ready and still in development.
+
 ![Game title screen](media/general/game.png)
 
 # Requirements and installation
@@ -87,7 +89,7 @@ You'll have to do that for both of the functions.
 
 ### Custom Caesar shift cipher
 
-The game uses a custom Caesar cipher to obfuscate packets that don't start with **0**. When a packet is sent, the game randomly chooses a shift value between 0 and 59. Every character in the packet is shifted forward through the alphabet by that amount. The shift value is then encoded as a single character and prepended to the packet. The server reads this first character to determine the shift amount, removes it, and shifts the remaining characters backwards to recover the original packet.
+A custom Caesar cipher is being used to obfuscate packets that don't start with **0**. When a packet is sent, it'll randomly choose a shift value between 0 and 59. Every character in the packet is shifted forward through the alphabet by that amount. The shift value is then encoded as a single character and prepended to the packet. The server reads this first character to determine the shift amount, removes it, and shifts the remaining characters backwards to recover the original packet.
 
 ### Interesting methods
 
