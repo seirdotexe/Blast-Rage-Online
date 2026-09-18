@@ -1,10 +1,16 @@
 export default class ClientManager {
   /**
-   * A map holding all of the clients
+   * A map holding all of the clients who have logged in
    * @private
    * @type {Map<number, Client>}
    */
   #clients = new Map();
+  /**
+   * A set holding all of the pending clients who haven't logged in yet
+   * @private
+   * @type {Set<Client>}
+   */
+  #pending = new Set();
 
   /**
    * Creates a new client manager instance to hold connected clients
@@ -32,7 +38,12 @@ export default class ClientManager {
    * @param {Client} client - The client to add
    */
   add(client) {
-    this.#clients.set(client.id, client);
+    if (client?.id) {
+      this.#pending.delete(client);
+      this.#clients.set(client.id, client);
+    } else {
+      this.#pending.add(client);
+    }
   }
 
   /**
@@ -40,7 +51,8 @@ export default class ClientManager {
    * @param {Client} client - The client to remove
    */
   remove(client) {
-    this.#clients.delete(client.id);
+    this.#pending.delete(client);
+    this.#clients.delete(client?.id);
   }
 
   /**

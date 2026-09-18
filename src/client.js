@@ -22,17 +22,6 @@ export default class Client {
      * @type {ILogger}
      */
     this.logger = server.logger;
-
-    /**
-     * The clients id
-     * @type {number}
-     */
-    this.id = Math.max(100, server.clientManager.count + 100); // Todo - Not sure if this is ok!
-    /**
-     * The clients IP address
-     * @type {string}
-     */
-    this.ip = socket.remoteAddress.split(':').pop();
   }
 
   /**
