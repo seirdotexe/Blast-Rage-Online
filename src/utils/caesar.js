@@ -18,11 +18,11 @@ export default class Caesar {
    * @returns {string} The encoded packet
    */
   static encodePacket(packet) {
-    if (packet[0] === '0' || packet[0] === '<') return packet;
+    if (packet[0] === '0' || packet.startsWith('<cross-domain-policy>')) return packet;
 
     let shiftAmount = Math.floor(Math.random() * 60);
 
-    // The original client avoids a shift that would turn the first packet character into '0'
+    // The cipher avoids a shift that would turn the first packet character into '0'
     while (this.shiftCharacters(packet[0], shiftAmount) === '0') {
       shiftAmount = Math.floor(Math.random() * 60);
     }
