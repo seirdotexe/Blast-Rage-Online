@@ -30,7 +30,7 @@ export default class NetworkManager {
 
   /**
    * Handles incoming data from the client to the server
-   * @param {string} data - The data string from Flash XML socket
+   * @param {string} data - The incoming data
    * @param {Client} client - The client sending this data to our server
    */
   async handleData(data, client) {

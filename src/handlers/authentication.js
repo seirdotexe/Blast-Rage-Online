@@ -1,7 +1,7 @@
 export default {
   opcode: '09',
   /**
-   * Handle the login packet
+   * Handle the authentication packet
    * @param {string} params
    * @param {Client} client
    */
