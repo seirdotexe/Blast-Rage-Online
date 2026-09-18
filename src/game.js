@@ -41,7 +41,7 @@ export default class GameServer {
       this.logger.info(`Client ${client.id} has connected`);
 
       // Process incoming data from the client to the server
-      socket.on('data', (data) => this.networkManager.handleData(data.split('\0')[0], client));
+      socket.on('data', async (data) => await this.networkManager.handleData(data.split('\0')[0], client));
       // Client gracefully says it's done sending
       socket.on('end', () => this.logger.info(`Client ${client.id} ended the connection`));
       // Client fully closed the connection

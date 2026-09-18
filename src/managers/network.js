@@ -4,7 +4,7 @@ export default class NetworkManager {
   /**
    * A map holding all of the handlers, opcode by its respected callback
    * @private
-   * @type {Map<string, Function>}
+   * @type {Map<string, (params: string, client: Client) => void | Promise<void>>}
    */
   #handlers = new Map();
 
@@ -32,7 +32,7 @@ export default class NetworkManager {
    * @param {string} data - The data string from Flash XML socket
    * @param {Client} client - The client sending this data to our server
    */
-  handleData(data, client) {
+  async handleData(data, client) {
     try {
       if (data === '<policy-file-request/>') {
         return client.send(`<cross-domain-policy><allow-access-from domain='*' to-ports='*' /></cross-domain-policy>`);
@@ -50,7 +50,7 @@ export default class NetworkManager {
       }
 
       client.server.logger.info(`Incoming data ${data}`);
-      callback(params, client); // Todo - What if async?
+      await callback(params, client);
     } catch (err) {
       client.server.logger.error('Error while handling incoming data', err);
     }

@@ -20,7 +20,7 @@
  *
  * @typedef {object} IHandler
  * @property {number} opcode
- * @property {Function} callback
+ * @property {(params: string, client: Client) => void | Promise<void>} callback
  * --- Types / Internal
  * @typedef {import('../client.js').default} Client
  * @typedef {import('../game.js').default} GameServer
