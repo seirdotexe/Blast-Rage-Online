@@ -8,6 +8,6 @@ export default {
   callback(params, client) {
     const [username, password] = params.split(';');
 
-    client.server.logger.verbose(`Handling login for ${username}`);
+    client.logger.verbose(`Handling login for ${username}`);
   }
 }

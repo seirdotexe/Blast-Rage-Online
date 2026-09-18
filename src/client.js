@@ -17,6 +17,11 @@ export default class Client {
      * @type {GameServer}
      */
     this.server = server;
+    /**
+     * The logger instance
+     * @type {ILogger}
+     */
+    this.logger = server.logger;
 
     /**
      * The clients id

@@ -48,13 +48,13 @@ export default class NetworkManager {
       const callback = this.#handlers.get(opcode);
 
       if (!callback) {
-        return client.server.logger.warn(`Unknown incoming data ${data}`);
+        return client.logger.warn(`Unknown incoming data ${data}`);
       }
 
-      client.server.logger.info(`Incoming data ${data}`);
+      client.logger.info(`Incoming data ${data}`);
       await callback(params, client);
     } catch (err) {
-      client.server.logger.error('Error while handling incoming data', err);
+      client.logger.error('Error while handling incoming data', err);
     }
   }
 }
