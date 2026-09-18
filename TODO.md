@@ -1,4 +1,7 @@
 # Todo
 
-- Caesar cipher
-  - Testing
+- Start working on some database stuff
+
+# API
+
+- Research
