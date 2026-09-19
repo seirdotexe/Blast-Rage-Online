@@ -1,3 +1,11 @@
+# Interesting methods
+
+1. `_SafePkg_41._SafeCls_40` - Cipher class
+2. `_SafePkg_8._SafeCls_71._SafeStr_154` - Send function
+3. `this.mmocha._SafeStr_154` - Sending packets
+4. `public function toString() : String` - This wraps up an obfuscated packet to send to the server
+5. `_SafePkg_20._SafeCls_39` - Obfuscated opcodes
+
 # Authentication
 
 ```
