@@ -7,6 +7,7 @@
  * Game server settings
  * @property {string} GAME_HOST
  * @property {number} GAME_PORT
+ * @property {string} GAME_POLICY
  * Internal
  * @property {'development'|'production'} NODE_ENV
  * @property {string} PROCESS_TITLE

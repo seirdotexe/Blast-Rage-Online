@@ -35,9 +35,7 @@ export default class NetworkManager {
    */
   async handleData(data, client) {
     try {
-      if (data === '<policy-file-request/>') {
-        return client.send(`<cross-domain-policy><allow-access-from domain='*' to-ports='*' /></cross-domain-policy>`);
-      }
+      if (data === '<policy-file-request/>') return client.send(process.env.GAME_POLICY);
 
       const packet = Caesar.decodePacket(data);
       const isUnobfuscated = (packet[0] === '0');
