@@ -10,7 +10,7 @@ A server emulator for the MMO game Blast Rage Online.
 
 # Requirements and installation
 
-📝 Requires Node ^24 and PostgreSQL ^18.
+📝 Requires Node ^24 and MySQL ^9.
 
 1. Download the repo and unzip it
 2. Open terminal, cd to the unzipped directory, and install all modules using `npm i`
