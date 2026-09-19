@@ -13,10 +13,11 @@ A server emulator for the MMO game Blast Rage Online.
 📝 Requires Node ^24 and MySQL ^9.
 
 1. Download the repo and unzip it
-2. Open terminal, cd to the unzipped directory, and install all modules using `npm i`
-3. Gather the game files and drop them in **src/public**
-4. Edit the settings.ini servers array and point it towards your own server
-5. In the same terminal, run the command `npm run start`
+2. Gather the game files and drop them in **src/public**
+3. Edit the settings.ini servers array and point it towards your own server
+4. Configure **config/app.env** and **config/knexfile.js** to your needs
+5. Open terminal, cd to the unzipped directory, and install all modules using `npm i`
+6. In the same terminal, run the command `npm run init` and `npm run start`
 
 ❓ A single instance of the game server alongside a web server will start up.
 

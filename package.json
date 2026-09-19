@@ -5,6 +5,7 @@
   "type": "module",
   "main": "src/index.js",
   "scripts": {
+    "init": "node scripts/initdb.js",
     "start": "node --env-file=config/app.env src/index.js"
   },
   "engines": {

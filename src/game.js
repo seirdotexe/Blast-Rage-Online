@@ -2,6 +2,7 @@ import { createServer } from 'node:net';
 import Client from './client.js';
 import ClientManager from './managers/client.js';
 import NetworkManager from './managers/network.js';
+import KnexDatabase from './system/database.js';
 import logger from './utils/logger.js';
 
 export default class GameServer {
@@ -19,6 +20,11 @@ export default class GameServer {
      * @type {NetworkManager}
      */
     this.networkManager = new NetworkManager();
+    /**
+     * The Knex provided database instance
+     * @type {Database}
+     */
+    this.database = KnexDatabase;
     /**
      * The logger instance
      * @type {ILogger}

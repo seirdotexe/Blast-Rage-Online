@@ -8,12 +8,6 @@
  * @property {string} GAME_HOST
  * @property {number} GAME_PORT
  * @property {string} GAME_POLICY
- * Database settings
- * @property {string} DB_HOST
- * @property {string} DB_USERNAME
- * @property {string} DB_PASSWORD
- * @property {string} DB_NAME
- * @property {string} DB_CLIENT
  * Internal
  * @property {'development'|'production'} NODE_ENV
  * @property {string} PROCESS_TITLE
@@ -31,6 +25,7 @@
  * --- Types / Internal
  * @typedef {import('../client.js').default} Client
  * @typedef {import('../game.js').default} GameServer
- * --- Types / Node
+ * --- Types / External
  * @typedef {import('node:net').Socket} Socket
+ * @typedef {import('knex').Knex} Database
  */
