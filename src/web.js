@@ -12,8 +12,14 @@ export default class WebServer {
 
   /**
    * Creates a new web server instance to serve the game files to the client
+   * @param {Database} database - Our database instance
    */
-  constructor() {
+  constructor(database) {
+    /**
+     * The Knex provided database instance
+     * @type {Database}
+     */
+    this.database = database;
     /**
      * The logger instance
      * @type {ILogger}
