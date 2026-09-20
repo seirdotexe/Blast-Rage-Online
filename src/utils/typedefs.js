@@ -23,7 +23,7 @@
  * @property {number} opcode
  * @property {(params: string, client: Client) => void | Promise<void>} callback
  * --- Types / Internal
- * @typedef {import('../client.js').default} Client
+ * @typedef {import('../system/client.js').default} Client
  * @typedef {import('../game.js').default} GameServer
  * --- Types / External
  * @typedef {import('node:net').Socket} Socket

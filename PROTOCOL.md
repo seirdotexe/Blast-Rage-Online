@@ -40,9 +40,8 @@ _SafeStr_1216 parses the response from the server upon valid login, once again c
 
 var _loc3_:_SafeCls_3 = _SafeCls_3._SafeStr_157();
 _loc3_.username = this.ed._SafeStr_117.username;
-_loc3_._SafeStr_230 = parseInt(_loc2_[0]);
-_loc3_._SafeStr_330 = parseInt(_loc2_[1]);
+_loc3_._SafeStr_230 = parseInt(_loc2_[0]); <- current bits (balance)
+_loc3_._SafeStr_330 = parseInt(_loc2_[1]); <- total bits (lifetime rank / xp)
 _loc3_.xcash = parseInt(_loc2_[2]);
 _loc3_._SafeStr_173 = parseInt(_loc2_[3]); <- user id
-
 ```

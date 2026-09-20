@@ -1,4 +1,4 @@
-import Caesar from './utils/caesar.js';
+import Caesar from '../utils/caesar.js';
 
 export default class Client {
   /**
@@ -27,6 +27,32 @@ export default class Client {
      * @type {Database}
      */
     this.database = server.database;
+  }
+
+  /**
+   * Set the client from the retrieved database user object
+   * @type {todo} userObj - The retrieved database information of this client
+   */
+  async setClient(userObj) {
+    delete userObj.password; delete userObj.banned;
+
+    Object.assign(this, userObj); // Todo - JSDoc
+
+    this.server.clientManager.add(this);
+
+    // Todo - Retrieve inventory
+  }
+
+  /**
+   * Update columns of the client (user) in the database
+   * @param {Object<string, boolean|string|number>} updateObj - The update object containing columns and values
+   */
+  async updateColumn(updateObj) {
+    try {
+      await this.database('users').update(updateObj).where('id', this.id);
+    } catch (err) {
+      this.logger('Error while updating column', err);
+    }
   }
 
   /**

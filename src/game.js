@@ -1,7 +1,7 @@
 import { createServer } from 'node:net';
-import Client from './client.js';
 import ClientManager from './managers/client.js';
 import NetworkManager from './managers/network.js';
+import Client from './system/client.js';
 import KnexDatabase from './system/database.js';
 import logger from './utils/logger.js';
 
