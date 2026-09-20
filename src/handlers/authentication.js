@@ -22,8 +22,7 @@ export default {
       if (!correctPassword) return client.send('09');
 
       await client.setClient(userObj);
-
-      // Todo - Send packet
+      client.send(`0A${client.username}|${client.current_bits_balance}|${client.total_bits_earned}|${client.xcash}|${client.id}`); // Todo - Send packet
     } catch (err) {
       client.logger.error('Error while handling authentication', err);
     }
