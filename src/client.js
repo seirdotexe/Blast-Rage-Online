@@ -22,6 +22,11 @@ export default class Client {
      * @type {ILogger}
      */
     this.logger = server.logger;
+    /**
+     * The database instance
+     * @type {Database}
+     */
+    this.database = server.database;
   }
 
   /**
