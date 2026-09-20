@@ -65,6 +65,7 @@ export default class Client {
    */
   send(data) {
     if (this.socket?.writable) {
+      this.logger.verbose(`Outgoing data ${data}`);
       this.socket.write(`${Caesar.encodePacket(data)}\0`);
     }
   }

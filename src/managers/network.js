@@ -48,7 +48,7 @@ export default class NetworkManager {
       const callback = this.#handlers.get(opcode);
       if (!callback) return client.logger.warn(`Unknown incoming data ${data}`);
 
-      client.logger.info(`Incoming data ${data}`);
+      client.logger.verbose(`Incoming data ${data}`);
       await callback(params, client); // Todo - Encode returning params and then send to client
     } catch (err) {
       client.logger.error('Error while handling incoming data', err);
