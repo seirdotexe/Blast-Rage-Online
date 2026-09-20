@@ -6,5 +6,7 @@ export default {
     user: 'myusername',
     password: 'mypassword',
     database: 'bro'
-  }
+  },
+  migrations: { directory: '../migrations' },
+  seeds: { directory: '../seeds' }
 }
