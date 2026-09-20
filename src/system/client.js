@@ -31,15 +31,18 @@ export default class Client {
 
   /**
    * Set the client from the retrieved database user object
-   * @type {todo} userObj - The retrieved database information of this client
+   * @param {UserObj} userObj - The retrieved database user object of this client
    */
   async setClient(userObj) {
-    delete userObj.password; delete userObj.banned;
-
-    Object.assign(this, userObj); // Todo - JSDoc
+    /** @type {number} */ this.id = userObj.id;
+    /** @type {string} */ this.username = userObj.username;
+    /** @type {Date}   */ this.created_at = userObj.created_at;
+    /** @type {Date}   */ this.last_login = userObj.last_login;
+    /** @type {number} */ this.current_bits_balance = userObj.current_bits_balance;
+    /** @type {number} */ this.total_bits_earned = userObj.total_bits_earned;
+    /** @type {number} */ this.xcash = userObj.xcash;
 
     this.server.clientManager.add(this);
-
     // Todo - Retrieve inventory
   }
 

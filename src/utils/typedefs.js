@@ -23,6 +23,17 @@
  * @property {number} opcode
  * @property {(params: string, client: Client) => void | Promise<void>} callback
  * --- Types / Internal
+ * @typedef {object} UserObj
+ * @property {number} id
+ * @property {string} username
+ * @property {string} password
+ * @property {Date} created_at
+ * @property {Date} last_login
+ * @property {number} current_bits_balance
+ * @property {number} total_bits_earned
+ * @property {number} xcash
+ * @property {boolean} banned
+ *
  * @typedef {import('../system/client.js').default} Client
  * @typedef {import('../game.js').default} GameServer
  * --- Types / External
