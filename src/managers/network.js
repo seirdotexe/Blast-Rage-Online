@@ -49,7 +49,7 @@ export default class NetworkManager {
       if (!callback) return client.logger.warn(`Unknown incoming data ${data}`);
 
       client.logger.info(`Incoming data ${data}`);
-      await callback(params, client);
+      await callback(params, client); // Todo - Encode returning params and then send to client
     } catch (err) {
       client.logger.error('Error while handling incoming data', err);
     }
