@@ -9,7 +9,7 @@ export default {
    */
   async callback(params, client) {
     const [username, password] = params.split(';');
-    const userObj = await client.database.knex('users').first().where({ username });
+    const userObj = await client.database('users').first().where({ username });
 
     if (!userObj) return client.send('09');
     if (userObj.banned) return client.send('091');
