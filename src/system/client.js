@@ -44,12 +44,13 @@ export default class Client {
   }
 
   /**
-   * Update columns of the client (user) in the database
-   * @param {Object<string, boolean|string|number>} updateObj - The update object containing columns and values
+   * Update a column of the client in the database's users table
+   * @param {string} column - The column
+   * @param {boolean|string|number} value - The value
    */
-  async updateColumn(updateObj) {
+  async updateColumn(column, value) {
     try {
-      await this.database('users').update(updateObj).where('id', this.id);
+      await this.database('users').update(column, value).where('id', this.id);
     } catch (err) {
       this.logger('Error while updating column', err);
     }
