@@ -15,8 +15,8 @@ Called from _SafeStr_789 and will start listening for _SafeStr_776 and _SafeStr_
 
 public static const _SafeStr_209:String = "Authenticate";
 case "A":
-  _loc5_ = _loc2_.substr(1,3); <- param4 _SafeStr_203 (mmocha _SafeStr_145)
-  _loc6_ = _loc2_.substr(4);
+  _loc5_ = _loc2_.substr(1,3); <- param4 _SafeStr_203 (mmocha _SafeStr_145) some sort of mmocha ID
+  _loc6_ = _loc2_.substr(4); <- rest of the packet data
   this._SafeStr_169(new _SafeCls_67(_SafeCls_67._SafeStr_209,false,false,_loc5_,_loc6_));
 
 _SafeStr_776 handles messages while logging in:

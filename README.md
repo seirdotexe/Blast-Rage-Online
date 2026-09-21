@@ -97,6 +97,16 @@ You'll have to do that for both of the functions.
 
 A custom Caesar cipher is being used to obfuscate packets that don't start with **0**. When a packet is sent, it'll randomly choose a shift value between 0 and 59. Every character in the packet is shifted forward through the alphabet by that amount. The shift value is then encoded as a single character and prepended to the packet. The server reads this first character to determine the shift amount, removes it, and shifts the remaining characters backwards to recover the original packet.
 
+### Tracing in the SWF
+
+```
+getlex QName(PackageNamespace("flash.external"),"ExternalInterface")
+pushstring "console.log"
+pushstring "Test"
+callproperty QName(PackageNamespace(""),"call"), 2
+pop
+```
+
 # License & Copyright
 
 This project applies the BSD-3-Clause license. This project aims to preserve this game. I'm not entitled in any sort of way on claiming copyright on it. All of the credit goes to Robyn Dubuc & XGen Studios. I'm not affiliated with them.
