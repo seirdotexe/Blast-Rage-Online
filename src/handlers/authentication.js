@@ -22,7 +22,12 @@ export default {
       if (!correctPassword) return client.send('09');
 
       await client.setClient(userObj);
-      client.send(`A${client.mmochaId}${client.username}|${client.current_bits_balance}|${client.total_bits_earned}|${client.xcash}|${client.id}`); // Todo - Send packet
+
+      // Todo
+      let packet = `A${client.mmochaId}${client.username}|${client.current_bits_balance}|${client.total_bits_earned}|${client.xcash}|${client.id}|`;
+      //packet += `0,1,ffd71e,262626,1,9,8`;
+
+      client.send(packet);
     } catch (err) {
       client.logger.error('Error while handling authentication', err);
     }
