@@ -34,6 +34,7 @@ export default class Client {
    * @param {UserObj} userObj - The retrieved database user object of this client
    */
   async setClient(userObj) {
+    /** @type {number} */ this.mmochaId = Math.max(100, Object.keys(this.server.clientManager.count).length + 100);
     /** @type {number} */ this.id = userObj.id;
     /** @type {string} */ this.username = userObj.username;
     /** @type {Date}   */ this.created_at = userObj.created_at;

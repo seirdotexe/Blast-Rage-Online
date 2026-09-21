@@ -5,6 +5,8 @@
 3. `this.mmocha._SafeStr_154` - Sending packets
 4. `public function toString() : String` - This wraps up an obfuscated packet to send to the server
 5. `_SafePkg_20._SafeCls_39` - Obfuscated opcodes
+6. `protected function _SafeStr_1141` - Receiving regular packets
+7. `_SafePkg_8._SafeCls_67` - Receiving packets event names
 
 # Authentication
 
@@ -12,8 +14,8 @@
 Called from _SafeStr_789 and will start listening for _SafeStr_776 and _SafeStr_814
 
 public static const _SafeStr_209:String = "Authenticate";
-case "A": <- obviously 0A
-  _loc5_ = _loc2_.substr(1,3);
+case "A":
+  _loc5_ = _loc2_.substr(1,3); <- param4 _SafeStr_203 (mmocha _SafeStr_145)
   _loc6_ = _loc2_.substr(4);
   this._SafeStr_169(new _SafeCls_67(_SafeCls_67._SafeStr_209,false,false,_loc5_,_loc6_));
 
@@ -35,9 +37,10 @@ _loc2_._SafeStr_1019 = int(param1.message.charAt(param1.message.length - 1)); <-
 This code above is only used for a JS call to GameLogin using ExternalInterface which doesn't exist, seems like dev code (dev user Murray May with user id 8060894)
 ExternalInterface.call("GameLogin",_loc2_.username,_SafeCls_11._SafeStr_806(_loc2_.password));
 
-What's important is: this._SafeStr_1216(param1.message.substr(param1.message.indexOf("|") + 1));
+What's important is: this._SafeStr_1216(param1.message.substr(param1.message.indexOf("|") + 1)); <- Removes the username
 _SafeStr_1216 parses the response from the server upon valid login, once again calls _SafeCls_3._SafeStr_157
 
+var _loc2_:Array = param1.split("|");
 var _loc3_:_SafeCls_3 = _SafeCls_3._SafeStr_157();
 _loc3_.username = this.ed._SafeStr_117.username;
 _loc3_._SafeStr_230 = parseInt(_loc2_[0]); <- current bits (balance)
