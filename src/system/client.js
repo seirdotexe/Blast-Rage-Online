@@ -63,11 +63,12 @@ export default class Client {
   /**
    * Send data to the client
    * @param {string} data - The data to send to the client
+   * @param {boolean} [encoded=false] - If the data of this packet should be encoded
    */
-  send(data) {
+  send(data, encoded = false) {
     if (this.socket?.writable) {
       this.logger.verbose(`Outgoing data ${data}`);
-      this.socket.write(`${Caesar.encodePacket(data)}\0`);
+      this.socket.write(`${encoded ? Caesar.encodePacket(data) : data}\0`);
     }
   }
 
