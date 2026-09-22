@@ -33,6 +33,13 @@ export default class WebServer {
   async start() {
     this.#app = Fastify();
 
+    // Todo
+    this.#app.get('/csv/', async (request, reply) => {
+      console.log(request.query);
+
+      return reply.type('text/plain').send('');
+    });
+
     this.#app.setNotFoundHandler((_, res) => res.code(404).type('text/html').send('Not Found'));
     this.#app.register(fastifyStatic, { root: `${import.meta.dirname}\\public`, prefix: '/' });
 

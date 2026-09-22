@@ -23,9 +23,8 @@ export default {
 
       await client.setClient(userObj);
 
-      // Todo
       let packet = `A${client.mmochaId}${client.username}|${client.current_bits_balance}|${client.total_bits_earned}|${client.xcash}|${client.id}|`;
-      //packet += `0,1,ffd71e,262626,1,9,8`;
+      packet += `0,1,ffd71e,262626,1,9,8`; // Todo
 
       client.send(packet);
     } catch (err) {
