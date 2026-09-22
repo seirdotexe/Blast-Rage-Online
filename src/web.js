@@ -33,9 +33,13 @@ export default class WebServer {
   async start() {
     this.#app = Fastify();
 
-    // Todo
-    this.#app.get('/csv/', async (request, reply) => {
-      console.log(request.query);
+    // Todo - user_id 8060894
+    this.#app.get('/csv/', async (req, res) => {
+      if (req?.query?.method === 'xgen.blastrage.user.items.list') {
+        // Todo - _SafeStr_1077
+      } else if (req?.query?.method === 'xgen.blastrage.user.tanks.list') {
+        // Todo - _SafeStr_1113
+      }
 
       return reply.type('text/plain').send('');
     });
