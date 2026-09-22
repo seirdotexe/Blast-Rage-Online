@@ -41,7 +41,7 @@ export default class WebServer {
         // Todo - _SafeStr_1113
       }
 
-      return reply.type('text/plain').send('');
+      return res.type('text/plain').send('');
     });
 
     this.#app.setNotFoundHandler((_, res) => res.code(404).type('text/html').send('Not Found'));
