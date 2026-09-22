@@ -40,7 +40,6 @@ export default class GameServer {
 
     createServer((socket) => {
       socket.setEncoding('utf8');
-      socket.setTimeout(10000);
 
       const client = new Client(socket, this);
       this.clientManager.add(client);
