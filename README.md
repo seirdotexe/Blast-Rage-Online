@@ -24,13 +24,7 @@ A server emulator for the MMO game Blast Rage Online.
 
 # Playing the game
 
-Because support for Adobe Flash has ceased, your only options are to create an Electron client, or use Pale Moon. The latter is the easiest.
-
-1. Download Pale Moon [here](https://www.palemoon.org/download.php?mirror=eu&bits=64&type=7z)
-2. Extract it and create a new directory inside `palemoon-34.3.2.win64\palemoon` called **plugins**
-3. Download `NPSWF64_32_0_0_371.dll` from [here](https://github.com/dreamcentury/webbrowser-flash) and place it in the plugins folder
-4. In Pale Moon, go to `about:config` and set `plugins.load_appdir_plugins` to **true**
-5. Flash should now be activated in `about:plugins`
+Because support for Adobe Flash has ceased, your only options are to create an Electron client, Pale Moon, or [Basilisk Portable](https://help.flashstorage.games/tools-and-browsers/basilisk-portable-with-flash-player). The latter is the easiest.
 
 ⚠️ Due to copyright, I won't be able to include the game files. They're easy to find on Archive.org.
 

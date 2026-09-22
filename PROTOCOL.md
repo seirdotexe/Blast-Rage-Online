@@ -7,6 +7,7 @@
 5. `_SafePkg_20._SafeCls_39` - Obfuscated opcodes
 6. `protected function _SafeStr_1141` - Receiving regular packets
 7. `_SafePkg_8._SafeCls_67` - Receiving packets event names
+8. `_SafeStr_342` - Gives you mod and gets set in the handshake packet
 
 # Authentication
 
