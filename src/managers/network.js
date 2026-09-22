@@ -46,9 +46,9 @@ export default class NetworkManager {
       const params = isObfuscated ? packet.slice(1) : packet.slice(2); // Todo - Decode params before passing to callback
 
       const callback = this.#handlers.get(opcode);
-      if (!callback) return client.logger.warn(`Unknown incoming data ${data}`);
+      if (!callback) return client.logger.warn(`Unknown incoming data ${packet}`);
 
-      client.logger.verbose(`Incoming data ${data}`);
+      client.logger.verbose(`Incoming data ${packet}`);
       await callback(params, client); // Todo - Encode returning params and then send to client
     } catch (err) {
       client.logger.error('Error while handling incoming data', err);
