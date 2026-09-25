@@ -10,7 +10,7 @@ export async function up(knex) {
     table.timestamp('created_at').notNullable().defaultTo(knex.fn.now());
     table.timestamp('last_login').notNullable().defaultTo(knex.fn.now());
     table.integer('current_bits_balance').unsigned().notNullable().defaultTo(0);
-    table.integer('total_bits_earned').unsigned().notNullable().defaultTo(0).comment('This counts as XP');
+    table.integer('total_bits_earned').unsigned().notNullable().defaultTo(0).comment('Used for leaderboard rank');
     table.integer('xcash').unsigned().notNullable().defaultTo(0);
     table.boolean('banned').notNullable().defaultTo(false);
   });
