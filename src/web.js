@@ -1,5 +1,6 @@
 import fastifyStatic from '@fastify/static';
 import Fastify from 'fastify';
+import fastifyDisablecache from 'fastify-disablecache';
 import logger from './utils/logger.js';
 import { hash } from './utils/scrypt.js';
 
@@ -33,6 +34,9 @@ export default class WebServer {
    */
   async start() {
     this.#app = Fastify();
+    this.#app.register(fastifyStatic, { root: `${import.meta.dirname}\\public`, prefix: '/' });
+    this.#app.register(fastifyDisablecache);
+    this.#app.setNotFoundHandler((_, res) => res.code(404).type('text/html').send('Not Found'));
 
     // Todo - user_id 8060894
     this.#app.get('/csv/', async (req, res) => {
@@ -71,9 +75,6 @@ export default class WebServer {
         }
       }
     });
-
-    this.#app.setNotFoundHandler((_, res) => res.code(404).type('text/html').send('Not Found'));
-    this.#app.register(fastifyStatic, { root: `${import.meta.dirname}\\public`, prefix: '/' });
 
     await this.#app.listen({ host: process.env.WEB_HOST, port: process.env.WEB_PORT });
     this.logger.info(`Web server listening on ${process.env.WEB_HOST}:${process.env.WEB_PORT}.`)
