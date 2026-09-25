@@ -96,7 +96,7 @@ A custom Caesar cipher is being used to obfuscate packets that don't start with 
 ```
 getlex QName(PackageNamespace("flash.external"),"ExternalInterface")
 pushstring "console.log"
-pushstring "Test"
+pushstring "Test" <- or getlocal X
 callproperty QName(PackageNamespace(""),"call"), 2
 pop
 ```
