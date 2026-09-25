@@ -43,9 +43,9 @@ export default class WebServer {
       const method = req?.query?.method;
 
       if (method === 'xgen.blastrage.user.items.list') {
-        // Todo - _SafeStr_1077
+        return res.type('text/plain').send('1,1\r2,1\r3,1\r7,1\r8,1\r9,1\r135,2');
       } else if (method === 'xgen.blastrage.user.tanks.list') {
-        // Todo - _SafeStr_1113
+        return res.type('text/plain').send('0,1,ffd71e,262626,1,9,8,135\r1,2,46b013,518f08,3,9,7\r2,3,1547ff,9caff5,2,9,7');
       }
 
       return res.type('text/plain').send('');
