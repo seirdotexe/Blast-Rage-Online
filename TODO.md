@@ -1,6 +1,5 @@
 # Todo
 
-- Add default ships to account creation
 - Retrieve ships & gear in API
 - Figure out the difference between TCP and WEB ships retrieval
 - Handshake packet

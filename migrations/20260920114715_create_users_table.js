@@ -13,6 +13,7 @@ export async function up(knex) {
     table.integer('total_bits_earned').unsigned().notNullable().defaultTo(0).comment('This counts as XP');
     table.integer('xcash').unsigned().notNullable().defaultTo(0);
     table.boolean('banned').notNullable().defaultTo(false);
+    table.string('inventory').notNullable().comment('All weapons and equipment, format: itemid,itemtype| where the pipe gets replaced by carriage return');
   });
 }
 

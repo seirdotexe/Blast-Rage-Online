@@ -8,6 +8,9 @@
  * @property {string} GAME_HOST
  * @property {number} GAME_PORT
  * @property {string} GAME_POLICY
+ * Default gear settings
+ * @property {string} GEAR_ITEMS
+ * @property {string} GEAR_SHIPS
  * Internal
  * @property {'development'|'production'} NODE_ENV
  * @property {string} PROCESS_TITLE
@@ -33,6 +36,7 @@
  * @property {number} total_bits_earned
  * @property {number} xcash
  * @property {boolean} banned
+ * @property {string} inventory
  *
  * @typedef {import('../system/client.js').default} Client
  * @typedef {import('../game.js').default} GameServer

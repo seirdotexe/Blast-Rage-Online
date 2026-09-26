@@ -9,7 +9,7 @@ export async function up(knex) {
     table.integer('ship_id').unsigned().notNullable().comment('The item id of this ship');
     table.string('color1', 6).notNullable();
     table.string('color2', 6).notNullable();
-    table.string('gear', 50).notNullable().comment('Includes weapons and equipment, item ids comma separated');
+    table.string('gear', 50).notNullable().comment('All weapons and equipment of this ship, format: item ids comma separated');
   });
 }
 

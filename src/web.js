@@ -41,9 +41,12 @@ export default class WebServer {
     // Todo - user_id 8060894
     this.#app.get('/csv/', async (req, res) => {
       const method = req?.query?.method;
+      const user_id = req?.query?.user_id;
 
       if (method === 'xgen.blastrage.user.items.list') {
-        return res.type('text/plain').send('1,1\r2,1\r3,1\r7,1\r8,1\r9,1\r135,2');
+        const { inventory } = await this.database('users').first().select('inventory').where('id', user_id);
+
+        return res.type('text/plain').send(inventory.replaceAll('|', '\r'));
       } else if (method === 'xgen.blastrage.user.tanks.list') {
         return res.type('text/plain').send('0,1,ffd71e,262626,1,9,8,135\r1,2,46b013,518f08,3,9,7\r2,3,1547ff,9caff5,2,9,7');
       }
@@ -57,21 +60,24 @@ export default class WebServer {
       if (!method) return res.sendFile('index.html');
 
       if (method === 'xgen.users.add') {
-        const { username, password } = req.query;
-        const userObj = await this.database('users').where({ username }).first();
-
-        if (userObj) {
-          return res.type('text/xml').send(`<?xml version="1.0" encoding="utf-8" ?><rsp stat="fail"><err code="4" msg="Username already exists" /></rsp>`);
-        }
-
         try {
-          const [id] = await this.database('users').insert({ username, password: await hash(password) });
+          const { username, password } = req.query;
+          const [id] = await this.database('users').insert({ username, password: await hash(password), inventory: process.env.GEAR_ITEMS });
+
+          process.env.GEAR_SHIPS.split('|').forEach(async (ship) => {
+            const [ship_id, color1, color2, ...gear] = ship.split(',');
+            await this.database('ships').insert({ user_id: id, ship_id, color1, color2, gear: gear.toString() });
+          });
 
           this.logger.info(`User ${username} with ${id} has been registered`);
           return res.type('text/xml').send(`<?xml version="1.0" encoding="utf-8" ?><rsp stat="ok"><user id="${id}" /></rsp>`);
         } catch (err) {
-          this.logger.error('Error while inserting new user', err);
-          return res.type('text/xml').send(`<?xml version="1.0" encoding="utf-8" ?><rsp stat="fail"><err code="4" msg="Database error" /></rsp>`);
+          if (err?.code === 'ER_DUP_ENTRY') {
+            return res.type('text/xml').send(`<?xml version="1.0" encoding="utf-8" ?><rsp stat="fail"><err code="4" msg="Username already exists" /></rsp>`);
+          } else {
+            this.logger.error('Error while inserting new user', err);
+            return res.status(500).type('text/xml').send(`<?xml version="1.0" encoding="utf-8" ?><rsp stat="fail"><err code="4" msg="Database error" /></rsp>`);
+          }
         }
       }
     });
