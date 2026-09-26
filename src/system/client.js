@@ -37,14 +37,15 @@ export default class Client {
     /** @type {number} */ this.mmochaId = Math.max(100, Object.keys(this.server.clientManager.count).length + 100);
     /** @type {number} */ this.id = userObj.id;
     /** @type {string} */ this.username = userObj.username;
-    /** @type {Date}   */ this.created_at = userObj.created_at;
-    /** @type {Date}   */ this.last_login = userObj.last_login;
     /** @type {number} */ this.current_bits_balance = userObj.current_bits_balance;
     /** @type {number} */ this.total_bits_earned = userObj.total_bits_earned;
     /** @type {number} */ this.xcash = userObj.xcash;
 
+    await this.updateColumn('last_login', this.database.fn.now());
+
     this.server.clientManager.add(this);
-    // Todo - Retrieve inventory
+
+    // Todo - Handshake packet here
   }
 
   /**
