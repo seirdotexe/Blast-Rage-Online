@@ -41,14 +41,26 @@ export default class WebServer {
     // Todo - user_id 8060894
     this.#app.get('/csv/', async (req, res) => {
       const method = req?.query?.method;
-      const user_id = req?.query?.user_id;
 
       if (method === 'xgen.blastrage.user.items.list') {
-        const { inventory } = await this.database('users').first().select('inventory').where('id', user_id);
+        try {
+          const { user_id } = req.query;
+          const { inventory } = await this.database('users').first().select('inventory').where('id', user_id);
 
-        return res.type('text/plain').send(inventory.replaceAll('|', '\r'));
+          return res.type('text/plain').send(inventory.replaceAll('|', '\r'));
+        } catch (err) {
+          this.logger.error('Error while retrieving items list', err);
+          return res.status(500).type('text/plain').send('Database error');
+        }
       } else if (method === 'xgen.blastrage.user.tanks.list') {
-        return res.type('text/plain').send('0,1,ffd71e,262626,1,9,8,135\r1,2,46b013,518f08,3,9,7\r2,3,1547ff,9caff5,2,9,7');
+        try {
+          const { user_id } = req.query;
+
+          // Todo
+        } catch (err) {
+          this.logger.error('Error while retrieving ships list', err);
+          return res.status(500).type('text/plain').send('Database error');
+        }
       }
 
       return res.type('text/plain').send('');
