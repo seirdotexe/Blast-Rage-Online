@@ -38,7 +38,6 @@ export default class WebServer {
     this.#app.register(fastifyDisablecache);
     this.#app.setNotFoundHandler((_, res) => res.code(404).type('text/html').send('Not Found'));
 
-    // Todo - user_id 8060894
     this.#app.get('/csv/', async (req, res) => {
       const method = req?.query?.method;
 
@@ -55,23 +54,26 @@ export default class WebServer {
       } else if (method === 'xgen.blastrage.user.tanks.list') {
         try {
           const { user_id } = req.query;
+          const ships = (await this.database('ships').select('id', 'ship_id', 'color1', 'color2', 'gear').where('user_id', user_id))
+            .map(({ id, ship_id, color1, color2, gear }) => `${id},${ship_id},${color1},${color2},${gear}`).join('\r');
 
-          // Todo
+          return res.type('text/plain').send(ships);
         } catch (err) {
           this.logger.error('Error while retrieving ships list', err);
           return res.status(500).type('text/plain').send('Database error');
         }
+      } else {
+        this.logger.warn(`Unknown CSV request ${method}`);
+        return res.status(500).type('text/plain').send('Call error');
       }
-
-      return res.type('text/plain').send('');
     });
 
     this.#app.get('/', async (req, res) => {
       const method = req?.query?.method;
 
-      if (!method) return res.sendFile('index.html');
-
-      if (method === 'xgen.users.add') {
+      if (!method) {
+        return res.sendFile('index.html')
+      } else if (method === 'xgen.users.add') {
         try {
           const { username, password } = req.query;
           const [id] = await this.database('users').insert({ username, password: await hash(password), inventory: process.env.GEAR_ITEMS });
@@ -82,15 +84,18 @@ export default class WebServer {
           });
 
           this.logger.info(`User ${username} with ${id} has been registered`);
-          return res.type('text/xml').send(`<?xml version="1.0" encoding="utf-8" ?><rsp stat="ok"><user id="${id}" /></rsp>`);
+          return res.type('text/xml').send(`<rsp stat="ok"><user id="${id}" /></rsp>`);
         } catch (err) {
           if (err?.code === 'ER_DUP_ENTRY') {
-            return res.type('text/xml').send(`<?xml version="1.0" encoding="utf-8" ?><rsp stat="fail"><err code="4" msg="Username already exists" /></rsp>`);
+            return res.type('text/xml').send(`<rsp stat="fail"><err code="4" msg="Username already exists" /></rsp>`);
           } else {
             this.logger.error('Error while inserting new user', err);
-            return res.status(500).type('text/xml').send(`<?xml version="1.0" encoding="utf-8" ?><rsp stat="fail"><err code="4" msg="Database error" /></rsp>`);
+            return res.status(500).type('text/xml').send(`<rsp stat="fail"><err code="4" msg="Database error" /></rsp>`);
           }
         }
+      } else {
+        this.logger.warn(`Unknown BASE request ${method}`);
+        return res.status(500).type('text/plain').send('Call error');
       }
     });
 
