@@ -19,7 +19,7 @@ export default class ClientManager {
 
   /**
    * Returns the map holding all of the clients
-   * @returns {Client} The map holding all of the clients
+   * @returns {Map<number, Client>} The map holding all of the clients
    */
   get clients() {
     return this.#clients;
