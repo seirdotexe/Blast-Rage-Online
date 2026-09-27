@@ -1,3 +1,4 @@
+import fastifyHelmet from '@fastify/helmet';
 import fastifyStatic from '@fastify/static';
 import Fastify from 'fastify';
 import fastifyDisablecache from 'fastify-disablecache';
@@ -34,9 +35,13 @@ export default class WebServer {
    */
   async start() {
     this.#app = Fastify();
+
+    this.#app.register(fastifyHelmet, { contentSecurityPolicy: false });
     this.#app.register(fastifyStatic, { root: `${import.meta.dirname}\\public`, prefix: '/' });
     this.#app.register(fastifyDisablecache);
+
     this.#app.setNotFoundHandler((_, res) => res.code(404).type('text/html').send('Not Found'));
+    this.#app.addHook('onClose', async () => await this.database.destroy());
 
     this.#app.get('/csv/', async (req, res) => {
       const method = req?.query?.method;
