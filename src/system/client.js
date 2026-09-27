@@ -44,8 +44,6 @@ export default class Client {
     await this.updateColumn('last_login', this.database.fn.now());
 
     this.server.clientManager.add(this);
-
-    // Todo - Handshake packet here
   }
 
   /**

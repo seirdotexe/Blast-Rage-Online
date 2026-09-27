@@ -48,4 +48,37 @@ _loc3_._SafeStr_230 = parseInt(_loc2_[0]); <- current bits (balance)
 _loc3_._SafeStr_330 = parseInt(_loc2_[1]); <- total bits (lifetime rank / xp)
 _loc3_.xcash = parseInt(_loc2_[2]);
 _loc3_._SafeStr_173 = parseInt(_loc2_[3]); <- user id
+
+TODO: Figure out the difference between TCP and WEB ships retrieval
+
+Right after everything is loaded in, the client will allow new events
+
+this.ed._SafeStr_117._SafeStr_250();
+this.mmocha._SafeStr_790("_"); <- Join room
+this.ed.notification_box._SafeStr_197();
+this.ed._SafeStr_147._SafeStr_764(this.ed,this.mmocha);
+this.ed._SafeStr_147.addEventListener(_SafeCls_66._SafeStr_504,this._SafeStr_686); <- Logout
+this.ed._SafeStr_147.addEventListener(_SafeCls_66._SafeStr_336,this._SafeStr_564); <- Quick Start
+this.ed._SafeStr_147.addEventListener(_SafeCls_66._SafeStr_324,this._SafeStr_957); <- Join Game
+this.ed._SafeStr_147.addEventListener(_SafeCls_66._SafeStr_373,this._SafeStr_990); <- Create Game
+```
+
+# Hand shake
+
+```
+public static const _SafeStr_359:String = "Hand Shake";
+
+case "U":
+  _loc5_ = _loc2_.substr(1,3);
+  _loc6_ = _loc2_.substr(4);
+  this._SafeStr_169(new _SafeCls_67(_SafeCls_67._SafeStr_359,false,false,_loc5_,_loc6_));
+
+Called in _SafeCls_49._SafeStr_407 to _SafeStr_492 which seems for lobby
+Also called in _SafeCls_102._SafeStr_1164 to _SafeStr_492 which seems for round
+
+U
+  MmochaID
+  #username#
+  _SafeStr_342 (1/0 mod)
+  encoded integer for rank
 ```
