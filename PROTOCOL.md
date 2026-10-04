@@ -41,15 +41,15 @@ ExternalInterface.call("GameLogin",_loc2_.username,_SafeCls_11._SafeStr_806(_loc
 What's important is: this._SafeStr_1216(param1.message.substr(param1.message.indexOf("|") + 1)); <- Removes the username
 _SafeStr_1216 parses the response from the server upon valid login, once again calls _SafeCls_3._SafeStr_157
 
-var _loc2_:Array = param1.split("|");
-var _loc3_:_SafeCls_3 = _SafeCls_3._SafeStr_157();
-_loc3_.username = this.ed._SafeStr_117.username;
-_loc3_._SafeStr_230 = parseInt(_loc2_[0]); <- current bits (balance)
-_loc3_._SafeStr_330 = parseInt(_loc2_[1]); <- total bits (lifetime rank / xp)
-_loc3_.xcash = parseInt(_loc2_[2]);
-_loc3_._SafeStr_173 = parseInt(_loc2_[3]); <- user id
+_SafeStr_1216 — loads the initial user data from the TCP packet. Here, ships are parsed and put into _SafeStr_127 and the loadout
+_SafeStr_1077 — loads the user's items through HTTP
+_SafeStr_1113 — loads the user's ships through HTTP
+_SafeStr_1216 parses ship records from the TCP packet, while _SafeStr_1113 parses ship records from the HTTP response. Both use _SafeCls_5._SafeStr_632() to create the ship objects
+The TCP packet contains the ship data, and the HTTP xgen.blastrage.user.tanks.list response contains the exact same ship data
+_SafeCls_3._SafeStr_157() returns a singleton, so all three functions operate on the same _SafeCls_3 object unless it is explicitly reset
+Therefore, the ships are effectively loaded twice: first from TCP, then again from HTTP, with the HTTP ship list replacing the TCP ship list
 
-TODO: Figure out the difference between TCP and WEB ships retrieval
+Since HTTP will always be sent, the ship data in the TCP packet appears unnecessary. It appears the devs had always used HTTP calls but then later on implemented retrieving ships through TCP and kept them both in for a later migration point.
 
 Right after everything is loaded in, the client will allow new events
 
