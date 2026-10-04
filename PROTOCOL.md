@@ -63,6 +63,13 @@ this.ed._SafeStr_147.addEventListener(_SafeCls_66._SafeStr_324,this._SafeStr_957
 this.ed._SafeStr_147.addEventListener(_SafeCls_66._SafeStr_373,this._SafeStr_990); <- Create Game
 ```
 
+# Room joining
+
+```
+After receiving the authentication packet, having loaded all items and ships (_SafeStr_1113) it'll call this.mmocha._SafeStr_790("_")
+This'll send to the server 03_ so I suppose _ means lobby?
+```
+
 # Hand shake
 
 ```
