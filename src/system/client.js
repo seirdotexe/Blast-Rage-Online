@@ -66,7 +66,7 @@ export default class Client {
    */
   send(data, encoded = false) {
     if (this.socket?.writable) {
-      this.logger.verbose(`Outgoing data ${data}`);
+      this.logger.verbose(`Outgoing data ${JSON.stringify(data)}`);
       this.socket.write(`${encoded ? Caesar.encodePacket(data) : data}\0`);
     }
   }
