@@ -14,6 +14,7 @@ export default {
     if (!userObj) return client.send('09');
     if (userObj.banned) return client.send('091');
     if (client.server.clientManager.online(userObj.id)) return client.send('095');
+    if (client.server.clientManager.count >= 999) return client.send('09b');
 
     try {
       client.logger.verbose(`Handling login for ${username}`);
