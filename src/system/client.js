@@ -40,10 +40,11 @@ export default class Client {
     /** @type {number} */ this.current_bits_balance = userObj.current_bits_balance;
     /** @type {number} */ this.total_bits_earned = userObj.total_bits_earned;
     /** @type {number} */ this.xcash = userObj.xcash;
-
-    await this.updateColumn('last_login', this.database.fn.now());
+    /** @type {Room}   */ this.room;
 
     this.server.clientManager.add(this);
+
+    await this.updateColumn('last_login', this.database.fn.now());
   }
 
   /**
