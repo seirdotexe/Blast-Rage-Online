@@ -1,5 +1,18 @@
 export default class ClientManager {
   /**
+   * The minimum value of a mmocha id
+   * @private
+   * @type {number}
+   */
+  static #MMOCHA_ID_MIN = 100;
+  /**
+   * The maximum value of a mmocha id
+   * @private
+   * @type {number}
+   */
+  static #MMOCHA_ID_MAX = 999;
+
+  /**
    * A map holding all of the clients who have logged in
    * @private
    * @type {Map<number, Client>}
@@ -11,6 +24,12 @@ export default class ClientManager {
    * @type {Set<Client>}
    */
   #pending = new Set();
+  /**
+   * An array holding all of the available mmocha id's
+   * @private
+   * @type {number[]}
+   */
+  #availableMmochaIds = Array.from({ length: ClientManager.#MMOCHA_ID_MAX - ClientManager.#MMOCHA_ID_MIN + 1 }, (_, i) => ClientManager.#MMOCHA_ID_MIN + i).reverse();
 
   /**
    * Creates a new client manager instance to hold connected clients
@@ -39,6 +58,8 @@ export default class ClientManager {
    */
   add(client) {
     if (client?.id) {
+      client.mmochaId = this.#availableMmochaIds.pop();
+
       this.#pending.delete(client);
       this.#clients.set(client.id, client);
     } else {
@@ -51,6 +72,8 @@ export default class ClientManager {
    * @param {Client} client - The client to remove
    */
   remove(client) {
+    if (client.mmochaId) this.#availableMmochaIds.push(client.mmochaId);
+
     this.#pending.delete(client);
     this.#clients.delete(client?.id);
   }
