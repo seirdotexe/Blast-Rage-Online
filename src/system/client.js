@@ -30,7 +30,7 @@ export default class Client {
   }
 
   /**
-   * Set the client from the retrieved database user object
+   * Sets the client from the retrieved database user object
    * @param {UserObj} userObj - The retrieved database user object of this client
    */
   async setClient(userObj) {
@@ -47,7 +47,7 @@ export default class Client {
   }
 
   /**
-   * Update a column of the client in the database's users table
+   * Updates a column of the client in the database's users table
    * @param {string} column - The column
    * @param {boolean|string|number} value - The value
    */
@@ -60,7 +60,7 @@ export default class Client {
   }
 
   /**
-   * Send data to the client
+   * Sends data to the client
    * @param {string} data - The data to send to the client
    * @param {boolean} [encoded=false] - If the data of this packet should be encoded
    */
@@ -72,7 +72,7 @@ export default class Client {
   }
 
   /**
-   * Disconnect the client
+   * Disconnects the client
    */
   disconnect() {
     if (this.socket.destroyed) return;
