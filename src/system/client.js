@@ -62,12 +62,13 @@ export default class Client {
   /**
    * Sends data to the client
    * @param {string} data - The data to send to the client
-   * @param {boolean} [encoded=false] - If the data of this packet should be encoded
+   * @param {boolean} [encode=false] - If the data of this packet should be encoded
+   * @param {boolean} [log=true] - If the data should be logged
    */
-  send(data, encoded = false) {
+  send(data, encode = false, log = true) {
     if (this.socket?.writable) {
-      this.logger.verbose(`Outgoing data ${JSON.stringify(data)}`);
-      this.socket.write(`${encoded ? Caesar.encodePacket(data) : data}\0`);
+      if (log) this.logger.verbose(`Outgoing unicast@${this?.id ?? 'pending'} data ${JSON.stringify(data)}`);
+      this.socket.write(`${encode ? Caesar.encodePacket(data) : data}\0`);
     }
   }
 
