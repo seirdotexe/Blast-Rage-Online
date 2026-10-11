@@ -39,6 +39,7 @@
  * @property {string} inventory
  *
  * @typedef {import('../system/client.js').default} Client
+ * @typedef {import('../system/room.js').default} Room
  * @typedef {import('../game.js').default} GameServer
  * --- Types / External
  * @typedef {import('node:net').Socket} Socket

@@ -1,6 +1,7 @@
 import { createServer } from 'node:net';
 import ClientManager from './managers/client.js';
 import NetworkManager from './managers/network.js';
+import RoomManager from './managers/room.js';
 import Client from './system/client.js';
 import logger from './utils/logger.js';
 
@@ -21,6 +22,11 @@ export default class GameServer {
      */
     this.networkManager = new NetworkManager();
     /**
+     * The room manager instance
+     * @type {RoomManager}
+     */
+    this.roomManager = new RoomManager();
+    /**
      * The Knex provided database instance
      * @type {Database}
      */
@@ -37,6 +43,7 @@ export default class GameServer {
    */
   async start() {
     await this.networkManager.loadHandlers();
+    this.roomManager.create('_');
 
     createServer((socket) => {
       socket.setEncoding('utf8');
