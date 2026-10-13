@@ -107,7 +107,7 @@ export default class WebServer {
     await this.#app.listen({ host: process.env.WEB_HOST, port: process.env.WEB_PORT });
     this.logger.info(`Web server listening on ${process.env.WEB_HOST}:${process.env.WEB_PORT}.`)
 
-    process.on('SIGINT', async () => { await this.#app.close(); process.exit(); });
-    process.on('SIGTERM', async () => { await this.#app.close(); process.exit(); })
+    process.on('SIGINT', async () => (await this.#app.close(), process.exit()));
+    process.on('SIGTERM', async () => (await this.#app.close(), process.exit()));
   }
 }

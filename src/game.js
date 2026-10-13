@@ -57,11 +57,11 @@ export default class GameServer {
       // Client gracefully says it's done sending
       socket.on('end', () => this.logger.info(`Client ${client?.id ?? 'pending'} ended the connection`));
       // Client fully closed the connection
-      socket.on('close', () => this.clientManager.remove(client), this.logger.info(`Client ${client?.id ?? 'pending'} disconnected`));
+      socket.on('close', () => (this.clientManager.remove(client), this.logger.info(`Client ${client?.id ?? 'pending'} disconnected`)));
       // Process socket errors
       socket.on('error', (err) => this.logger.error(`Client ${client?.id ?? 'pending'} socket error: ${err.message}`));
       // Process client timeouts
-      socket.on('timeout', () => client.disconnect(), this.logger.info(`Client ${client?.id ?? 'pending'} timed out`));
+      socket.on('timeout', () => (client.disconnect(), this.logger.info(`Client ${client?.id ?? 'pending'} timed out`)));
     }).listen(process.env.GAME_PORT, process.env.GAME_HOST, () => this.logger.info(`Game server listening on ${process.env.GAME_HOST}:${process.env.GAME_PORT}.`));
   }
 }
