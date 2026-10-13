@@ -1,5 +1,4 @@
 import winston from 'winston';
-import 'winston-daily-rotate-file';
 
 const logger = winston.createLogger({
   exitOnError: false,
