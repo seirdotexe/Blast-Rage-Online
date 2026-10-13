@@ -37,19 +37,25 @@ export default class NetworkManager {
     try {
       if (data === '<policy-file-request/>') return client.send(process.env.GAME_POLICY);
 
+      // Prepare incoming data
       const packet = Caesar.decodePacket(data);
       const isObfuscated = (packet[0] !== '0');
 
-      // The first character in a decoded packet will be the true opcode
-      // Regular packets always start with 0X
+      // The first character in a decoded packet will be the true deobfuscated opcode
+      // Regular packets always start with a 0
       const opcode = isObfuscated ? Caesar.decodeInteger(packet[0]) : packet.slice(0, 2);
-      const params = isObfuscated ? packet.slice(1) : packet.slice(2); // Todo - Decode params before passing to callback
+      const params = isObfuscated ? packet.slice(1) : packet.slice(2);
 
+      // Clients cannot call any other opcodes before being authenticated
+      if (!client?.authenticated && (opcode !== '09')) return client.disconnect();
+
+      // Try looking for a callback to the opcode's respected handler
       const callback = this.#handlers.get(opcode);
       if (!callback) return client.logger.warn(`Unknown incoming data ${opcode}${params}`);
 
+      // Call the handler's callback for this opcode
       client.logger.verbose(`Incoming data ${opcode}${params}`);
-      await callback(params, client); // Todo - Encode returning params and then send to client
+      await callback(params, client);
     } catch (err) {
       client.logger.error('Error while handling incoming data', err);
     }

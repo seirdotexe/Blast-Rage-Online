@@ -34,13 +34,14 @@ export default class Client {
    * @param {UserObj} userObj - The retrieved database user object of this client
    */
   async setClient(userObj) {
-    /** @type {number} */ this.mmochaId;
-    /** @type {number} */ this.id = userObj.id;
-    /** @type {string} */ this.username = userObj.username;
-    /** @type {number} */ this.current_bits_balance = userObj.current_bits_balance;
-    /** @type {number} */ this.total_bits_earned = userObj.total_bits_earned;
-    /** @type {number} */ this.xcash = userObj.xcash;
-    /** @type {Room}   */ this.room;
+    /** @type {boolean} */ this.authenticated = true;
+    /** @type {number}  */ this.mmochaId;
+    /** @type {number}  */ this.id = userObj.id;
+    /** @type {string}  */ this.username = userObj.username;
+    /** @type {number}  */ this.current_bits_balance = userObj.current_bits_balance;
+    /** @type {number}  */ this.total_bits_earned = userObj.total_bits_earned;
+    /** @type {number}  */ this.xcash = userObj.xcash;
+    /** @type {Room}    */ this.room;
 
     this.server.clientManager.add(this);
 
