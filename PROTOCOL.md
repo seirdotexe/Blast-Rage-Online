@@ -8,6 +8,7 @@
 6. `protected function _SafeStr_1141` - Receiving regular packets
 7. `_SafePkg_8._SafeCls_67` - Receiving packets event names
 8. `_SafeStr_342` - Gives you mod and gets set in the handshake packet
+9. `this.ed.notification_box._SafeStr_108` - Messages to the player in UI box along with `error_messages`
 
 # Authentication
 
@@ -67,7 +68,15 @@ this.ed._SafeStr_147.addEventListener(_SafeCls_66._SafeStr_373,this._SafeStr_990
 
 ```
 After receiving the authentication packet, having loaded all items and ships (_SafeStr_1113) it'll call this.mmocha._SafeStr_790("_")
-This'll send to the server 03_ so I suppose _ means lobby?
+This'll send to the server 03_ so I suppose _ means lobby
+
+_SafeStr_790 = attempt to join room
+_SafeStr_402 = room name in mmocha class
+_SafeStr_957 = join game which gives us new events
+
+this._SafeStr_156.addEventListener(_SafeCls_66._SafeStr_337,this._SafeStr_522); <- Error out
+this._SafeStr_156.addEventListener(_SafeCls_66._SafeStr_218,this._SafeStr_558); <- Leave
+
 ```
 
 # Hand shake

@@ -57,6 +57,7 @@ export default class Room {
    * @param {Client} client - The client to add
    */
   add(client) {
+    client?.room?.remove(client);
     this.#clients.set(client.id, client);
     // Todo - Send message?
   }
