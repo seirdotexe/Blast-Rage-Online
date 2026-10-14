@@ -44,7 +44,7 @@ export default class Room {
 
     for (const client of this.#clients.values()) {
       if (log) {
-        client.logger.verbose(`Outgoing multicast@${this.name} data ${JSON.stringify(data)}`);
+        client.logger.info(`Outgoing multicast@${this.name} data ${JSON.stringify(data)}`);
         log = false;
       }
 
@@ -57,6 +57,7 @@ export default class Room {
    * @param {Client} client - The client to add
    */
   add(client) {
+    client.logger.verbose(`Client joined room ${this.name}`);
     client?.room?.remove(client);
     this.#clients.set(client.id, client);
     // Todo - Send message?
@@ -68,6 +69,7 @@ export default class Room {
    */
   remove(client) {
     if (this.#clients.has(client.id)) {
+      client.logger.verbose(`Client left room ${this.name}`);
       client.room = undefined;
 
       this.#clients.delete(client.id);

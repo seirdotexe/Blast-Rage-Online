@@ -54,7 +54,7 @@ export default class NetworkManager {
       if (!callback) return client.logger.warn(`Unknown incoming data ${opcode}${params}`);
 
       // Call the handler's callback for this opcode
-      client.logger.verbose(`Incoming data ${opcode}${params}`);
+      client.logger.info(`Incoming data ${opcode}${params}`);
       await callback(params, client);
     } catch (err) {
       client.logger.error('Error while handling incoming data', err);

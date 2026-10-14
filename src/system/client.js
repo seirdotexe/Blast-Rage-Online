@@ -43,6 +43,7 @@ export default class Client {
     /** @type {number}  */ this.xcash = userObj.xcash;
     /** @type {Room}    */ this.room;
 
+    this.logger = this.logger.child({ clientId: `(uid=${this.id},mid=${this.mmochaId})` });
     this.server.clientManager.add(this);
 
     await this.updateColumn('last_login', this.database.fn.now());
@@ -69,7 +70,7 @@ export default class Client {
    */
   send(data, encode = false, log = true) {
     if (this.socket?.writable) {
-      if (log) this.logger.verbose(`Outgoing unicast@${this?.id ?? 'pending'} data ${JSON.stringify(data)}`);
+      if (log) this.logger.info(`Outgoing unicast data ${JSON.stringify(data)}`);
       this.socket.write(`${encode ? Caesar.encodePacket(data) : data}\0`);
     }
   }

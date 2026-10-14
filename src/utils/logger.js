@@ -1,14 +1,12 @@
 import winston from 'winston';
 
 const logger = winston.createLogger({
-  exitOnError: false,
-  handleExceptions: true,
-  handleRejections: true,
-  levels: { error: 0, warn: 1, verbose: 2, info: 3 }
+  levels: { error: 0, warn: 1, verbose: 2, info: 3 },
+  format: winston.format.combine(
+    winston.format.colorize(),
+    winston.format.printf((info) => `[${info.clientId ?? 'SERVER'}] ${info.level}: ${info.message}`)
+  ),
+  transports: [new winston.transports.Console()]
 });
-
-logger.add(new winston.transports.Console({
-  format: winston.format.combine(winston.format.colorize(), winston.format.simple())
-}));
 
 export default logger;

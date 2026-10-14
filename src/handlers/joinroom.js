@@ -16,7 +16,6 @@ export default {
     if (room.full) return client.send('0945');
 
     room.add(client);
-    client.logger.verbose(`Client ${client.id} joined room ${room.name}`);
     // Todo from room system - Send message?
   }
 }
