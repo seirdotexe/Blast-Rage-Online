@@ -59,7 +59,9 @@ export default class Room {
   add(client) {
     client.logger.verbose(`Client joined room ${this.name}`);
     client?.room?.remove(client);
+
     this.#clients.set(client.id, client);
+    client.room = this;
     // Todo - Send message?
   }
 
@@ -73,7 +75,7 @@ export default class Room {
       client.room = undefined;
 
       this.#clients.delete(client.id);
-      // Todo - Send message?
+      this.send(`D${client.mmochaId}`);
     }
   }
 }

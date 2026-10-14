@@ -16,6 +16,6 @@ export default {
     if (room.full) return client.send('0945');
 
     room.add(client);
-    // Todo from room system - Send message?
+    // Todo - Handshake
   }
 }

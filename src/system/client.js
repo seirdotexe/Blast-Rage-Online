@@ -81,6 +81,8 @@ export default class Client {
   disconnect() {
     if (this.socket.destroyed) return;
 
+    this?.room?.remove(this);
+    this.server.clientManager.remove(this);
     this.socket.end();
   }
 }
