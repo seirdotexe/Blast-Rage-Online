@@ -18,7 +18,7 @@ export default class Caesar {
    * @returns {string} The encoded packet
    */
   static encodePacket(packet) {
-    if (packet[0] === '0' || packet.startsWith('<cross-domain-policy>')) return packet;
+    if ((packet[0] === '0') || packet.startsWith('<cross-domain-policy>')) return packet;
 
     let shiftAmount = Math.floor(Math.random() * 60);
 
