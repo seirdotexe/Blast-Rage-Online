@@ -59,9 +59,9 @@ export default class Room {
   add(client) {
     client.logger.verbose(`Client joined room ${this.name}`);
     client?.room?.remove(client);
+    client.room = this;
 
     this.#clients.set(client.id, client);
-    client.room = this;
     // Todo - Send message?
   }
 

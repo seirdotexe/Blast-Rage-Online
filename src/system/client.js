@@ -44,8 +44,8 @@ export default class Client {
     /** @type {boolean} */ this.moderator = userObj.moderator;
     /** @type {Room}    */ this.room;
 
-    this.logger = this.logger.child({ clientId: `(uid=${this.id},mid=${this.mmochaId})` });
     this.server.clientManager.add(this);
+    this.logger = this.logger.child({ clientId: `(uid=${this.id},mid=${this.mmochaId})` });
 
     await this.updateColumn('last_login', this.database.fn.now());
   }
