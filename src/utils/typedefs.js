@@ -36,6 +36,7 @@
  * @property {number} total_bits_earned
  * @property {number} xcash
  * @property {boolean} banned
+ * @property {boolean} moderator
  * @property {string} inventory
  *
  * @typedef {import('../system/client.js').default} Client

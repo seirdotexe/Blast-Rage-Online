@@ -41,6 +41,7 @@ export default class Client {
     /** @type {number}  */ this.current_bits_balance = userObj.current_bits_balance;
     /** @type {number}  */ this.total_bits_earned = userObj.total_bits_earned;
     /** @type {number}  */ this.xcash = userObj.xcash;
+    /** @type {boolean} */ this.moderator = userObj.moderator;
     /** @type {Room}    */ this.room;
 
     this.logger = this.logger.child({ clientId: `(uid=${this.id},mid=${this.mmochaId})` });
