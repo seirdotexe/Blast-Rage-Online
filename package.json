@@ -14,7 +14,7 @@
   "dependencies": {
     "@fastify/helmet": "^13.2.0",
     "@fastify/static": "10.1.7",
-    "fastify": "5.12.7",
+    "fastify": "5.12.8",
     "fastify-disablecache": "^5.0.1",
     "knex": "^3.3.0",
     "mysql2": "^3.24.6",
