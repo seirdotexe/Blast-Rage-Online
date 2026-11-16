@@ -1,18 +1,18 @@
-import { verify } from '../utils/scrypt.js';
+import { verify } from '../utils/scrypt.ts';
 
 export default {
   opcode: '09',
   /**
    * Handle the authentication packet
-   * @param {string} params
-   * @param {Client} client
+   * @param params
+   * @param client
    */
-  async callback(params, client) {
+  async callback(params: string, client: Client) {
     const [username, password] = params.split(';');
-    /** @type {UserObj} */ const userObj = await client.database('users').first().where({ username });
+    const userObj: UserObj = await client.database('users').first().where({ username });
 
     // Incorrect Username/Password combination
-    if (!userObj) return client.send('09');
+    if (!userObj || !username || !password) return client.send('09');
     // User is banned
     if (userObj.banned) return client.send('091');
     // Duplicate login

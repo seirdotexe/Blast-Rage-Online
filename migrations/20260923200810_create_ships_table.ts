@@ -1,8 +1,6 @@
-/**
- * @param {import('knex').Knex} knex
- * @returns {Promise<void>}
- */
-export async function up(knex) {
+import type { Knex } from 'knex';
+
+export async function up(knex: Knex): Promise<void> {
   return knex.schema.createTable('ships', (table) => {
     table.increments('id').primary().comment('Unique id of this ship');
     table.integer('user_id').unsigned().notNullable().references('id').inTable('users').onDelete('cascade').onUpdate('cascade');
@@ -13,10 +11,6 @@ export async function up(knex) {
   });
 }
 
-/**
- * @param {import('knex').Knex} knex
- * @returns {Promise<void>}
- */
-export async function down(knex) {
+export async function down(knex: Knex): Promise<void> {
   return knex.schema.dropTable('ships');
 }

@@ -1,13 +1,9 @@
 import { readdir } from 'node:fs/promises';
-import Caesar from '../utils/caesar.js';
+import Caesar from '../utils/caesar.ts';
 
 export default class NetworkManager {
-  /**
-   * A map holding all of the handlers, opcode by its respected callback
-   * @private
-   * @type {Map<string, (params: string, client: Client) => void | Promise<void>>}
-   */
-  #handlers = new Map();
+  /** A map holding all of the handlers, opcode by its respected callback */
+  #handlers: Map<string, IHandler['callback']> = new Map();
 
   /**
    * Creates a new network manager instance to guide traffic to the right handler function
@@ -18,11 +14,10 @@ export default class NetworkManager {
    * Loads all of the handlers
    */
   async loadHandlers() {
-    const files = await readdir('src/handlers');
+    const files: string[] = await readdir('src/handlers');
 
     for (const file of files) {
-      /** @type {{ default: IHandler }} */
-      const { default: handler } = await import(`../handlers/${file}`);
+      const { default: handler } = await import(`../handlers/${file}`) as { default: IHandler };
 
       this.#handlers.set(handler.opcode, handler.callback);
     }
@@ -30,24 +25,24 @@ export default class NetworkManager {
 
   /**
    * Handles incoming data from the client to the server
-   * @param {string} data - The incoming data
-   * @param {Client} client - The client sending this data to our server
+   * @param data - The incoming data
+   * @param client - The client sending this data to our server
    */
-  async handleData(data, client) {
+  async handleData(data: string, client: Client) {
     try {
       if (data === '<policy-file-request/>') return client.send(process.env.GAME_POLICY);
 
       // Prepare incoming data
-      const packet = Caesar.decodePacket(data);
-      const isObfuscated = (packet[0] !== '0');
+      const packet: string = Caesar.decodePacket(data);
+      const isObfuscated: boolean = (packet[0] !== '0');
 
       // The first character in a decoded packet will be the true deobfuscated opcode
       // Regular packets always start with a 0
-      const opcode = isObfuscated ? Caesar.decodeInteger(packet[0]) : packet.slice(0, 2);
-      const params = isObfuscated ? packet.slice(1) : packet.slice(2);
+      const opcode: string = isObfuscated ? String(Caesar.decodeInteger(packet.charAt(0))) : packet.slice(0, 2);
+      const params: string = isObfuscated ? packet.slice(1) : packet.slice(2);
 
       // Clients cannot call any other opcodes before being authenticated
-      if (!client?.authenticated && (opcode !== '09')) return client.disconnect();
+      if (client.mmochaId === undefined && (opcode !== '09')) return client.disconnect();
 
       // Try looking for a callback to the opcode's respected handler
       const callback = this.#handlers.get(opcode);

@@ -10,15 +10,15 @@ A server emulator for the MMO game Blast Rage Online.
 
 # Requirements and installation
 
-📝 Requires Node ^24 and MySQL ^9.
+📝 Requires Node ^24, pnpm ^12, and MySQL ^9.
 
 1. Download the repo and unzip it
 2. Gather the game files and drop them in **src/public**
 3. Edit the settings.ini servers array and point it towards your own server
 4. Configure **config/app.env** and **config/knexfile.js** to your needs
 5. Create a new database in your MySQL server called **bro**
-6. Open terminal, cd to the unzipped directory, and install all modules using `npm i`
-7. In the same terminal, run the command `npm run migrate`* and `npm run start`**
+6. Open terminal, cd to the unzipped directory, and install all modules using `pnpm install`
+7. In the same terminal, run the command `pnpm migrate`* and `pnpm start`**
 
 ❓ *Knex will initialize the database by filling the tables and columns.
 

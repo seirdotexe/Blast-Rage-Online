@@ -1,46 +1,41 @@
 export default class Room {
-  /**
-   * A map holding all of the clients
-   * @private
-   * @type {Map<number, Client>}
-   */
-  #clients = new Map();
+  /** The name of the room */
+  name: string;
+
+  /** A map holding all of the clients */
+  #clients: Map<number, Client> = new Map();
 
   /**
    * Creates a new room containing all room logic
-   * @param {string} name - The name of the room
+   * @param name - The name of the room
    */
-  constructor(name) {
-    /**
-     * The name of the room
-     * @type {string}
-     */
+  constructor(name: string) {
     this.name = name;
   }
 
   /**
    * Returns the amount of clients
-   * @returns {number} The amount of clients
+   * @returns The amount of clients
    */
-  get count() {
+  get count(): number {
     return this.#clients.size;
   }
 
   /**
    * Returns whether the room is full or not
-   * @returns {boolean} Whether the room is full or not
+   * @returns Whether the room is full or not
    */
-  get full() {
+  get full(): boolean {
     return (this.name === '_') ? false : (this.count >= 8);
   }
 
   /**
    * Sends data to the clients
-   * @param {string} data - The data to send to the clients
-   * @param {boolean} [encode=false] - If the data of this packet should be encoded
+   * @param data - The data to send to the clients
+   * @param encode [default=false] - If the data of this packet should be encoded
    */
-  send(data, encode = false) {
-    let log = true;
+  send(data: string, encode: boolean = false) {
+    let log: boolean = true;
 
     for (const client of this.#clients.values()) {
       if (log) {
@@ -54,9 +49,9 @@ export default class Room {
 
   /**
    * Adds a client
-   * @param {Client} client - The client to add
+   * @param client - The client to add
    */
-  add(client) {
+  add(client: Client) {
     client.logger.verbose(`Client joined room ${this.name}`);
     client?.room?.remove(client);
     client.room = this;
@@ -67,9 +62,9 @@ export default class Room {
 
   /**
    * Removes a client
-   * @param {Client} client - The client to remove
+   * @param client - The client to remove
    */
-  remove(client) {
+  remove(client: Client) {
     if (this.#clients.has(client.id)) {
       client.logger.verbose(`Client left room ${this.name}`);
       client.room = undefined;

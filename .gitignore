@@ -1,6 +1,10 @@
-node_modules
-package-lock.json
-playground.js
-src/public/blast-rage-online
+# Folders
+node_modules/
+src/public/blast-rage-online/
 src/public/data/
+# Files
 src/public/*.swf
+package-lock.json
+pnpm-lock.yaml
+config/dev.env
+playground.ts

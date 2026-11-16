@@ -2,11 +2,11 @@ export default {
   opcode: '03',
   /**
    * Handle the join room packet
-   * @param {string} params
-   * @param {Client} client
+   * @param params
+   * @param client
    */
-  async callback(params, client) {
-    const room = client.server.roomManager.get(params);
+  async callback(params: string, client: Client) {
+    const room: Room | undefined = client.server.roomManager.get(params);
 
     // Client is joining a room they're already in
     if (client?.room?.name === params) return;
