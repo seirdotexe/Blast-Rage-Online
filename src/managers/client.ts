@@ -21,7 +21,7 @@ export default class ClientManager {
    * @returns The map holding all of the clients
    */
   get clients(): Map<number, Client> {
-    return this.clients;
+    return this.#clients;
   }
 
   /**
