@@ -1,4 +1,5 @@
 export default class Room {
+  //! Room properties
   /** The name of the room */
   name: string;
 
