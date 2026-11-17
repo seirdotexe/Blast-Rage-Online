@@ -7,4 +7,4 @@ src/public/*.swf
 package-lock.json
 pnpm-lock.yaml
 config/dev.env
-playground.ts
+playground.js

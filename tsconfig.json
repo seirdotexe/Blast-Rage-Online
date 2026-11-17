@@ -2,8 +2,7 @@
   "include": [
     "src/**/*",
     "config/**/*.ts",
-    "migrations/**/*.ts",
-    "playground.ts"
+    "migrations/**/*.ts"
   ],
   "compilerOptions": {
     // Enviroment
