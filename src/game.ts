@@ -51,7 +51,7 @@ export default class GameServer {
       // Client fully closed the connection
       socket.on('close', () => (client.disconnect(), this.logger.verbose('Client has disconnected')));
       // Process socket errors
-      socket.on('error', (err) => (client.disconnect(), this.logger.error(`Client socket error: ${err.message}`)));
+      socket.on('error', (err) => (client.disconnect(), this.logger.error('Client socket error', err)));
       // Process client timeouts
       socket.on('timeout', () => (client.disconnect(), this.logger.verbose('Client timed out')));
     }).listen(process.env.GAME_PORT, process.env.GAME_HOST, () => this.logger.info(`Game server listening on ${process.env.GAME_HOST}:${process.env.GAME_PORT}.`));
