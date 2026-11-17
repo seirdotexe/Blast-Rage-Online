@@ -3,7 +3,7 @@ import Caesar from '../utils/caesar.ts';
 
 export default class NetworkManager {
   /** A map holding all of the handlers, opcode by its respected callback */
-  #handlers: Map<string, IHandler['callback']> = new Map();
+  #handlers: Map<string, IGameHandler['callback']> = new Map();
 
   /**
    * Creates a new network manager instance to guide traffic to the right handler function
@@ -14,10 +14,10 @@ export default class NetworkManager {
    * Loads all of the handlers
    */
   async loadHandlers() {
-    const files: string[] = await readdir('src/handlers');
+    const files: string[] = await readdir('src/handlers/game');
 
     for (const file of files) {
-      const { default: handler } = await import(`../handlers/${file}`) as { default: IHandler };
+      const { default: handler } = await import(`../handlers/game/${file}`) as { default: IGameHandler };
 
       this.#handlers.set(handler.opcode, handler.callback);
     }

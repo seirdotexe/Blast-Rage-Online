@@ -1,4 +1,4 @@
-import { verify } from '../utils/scrypt.ts';
+import { verify } from '../../utils/scrypt.ts';
 
 export default {
   opcode: '09',

@@ -5,7 +5,7 @@ export default {
    * @param params
    * @param client
    */
-  async callback(params: string, client: Client) {
+  callback(params: string, client: Client) {
     const room: Room | undefined = client.server.roomManager.get(params);
 
     // Client is joining a room they're already in
