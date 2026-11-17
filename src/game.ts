@@ -59,7 +59,10 @@ export default class GameServer {
 
   /** Stops the game server */
   async stop() {
-    // Todo: Loop through all connected clients and disconnect them with a message
+    for (const client of this.clientManager.clients.values()) {
+      client.disconnect();
+    }
+
     this.#server.close();
   }
 }
