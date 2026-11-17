@@ -72,7 +72,7 @@ export default class Client {
    */
   send(data: string, encode: boolean = false, log: boolean = true) {
     if (this.#socket?.writable) {
-      if (log) this.logger.info(`Outgoing unicast data ${JSON.stringify(data)}`);
+      if (log) this.logger.info(`Outgoing unicast data ${data}`);
       this.#socket.write(`${encode ? Caesar.encodePacket(data) : data}\0`);
     }
   }
