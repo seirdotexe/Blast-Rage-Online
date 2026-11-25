@@ -68,6 +68,9 @@ export default class WebServer {
             this.logger.error('Error while handling incoming HTTP request', err);
             return res.status(500).type('text/plain').send('Server error');
           }
+        } else {
+          this.logger.error('Error while handling incoming HTTP request', err);
+          return res.status(500).type('text/plain').send('Server error');
         }
       }
     });
